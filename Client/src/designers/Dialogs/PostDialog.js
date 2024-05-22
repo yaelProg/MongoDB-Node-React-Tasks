@@ -7,21 +7,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useSelector } from "react-redux";
 import { useUpdatePostMutation } from '../../posts/postsApiSlice';
 
-function PostDialog({ post }) {
+function PostDialog({ post, open, setOpen }) {
   const [Edit] = useUpdatePostMutation()
 
-
-
-  const [open, setOpen] = React.useState(true);
   const [title, setTitle] = React.useState(post.title)
   const [body, setBody] = React.useState(post.body)
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -29,10 +21,10 @@ function PostDialog({ post }) {
 
   const handleSave = () => {
     Edit({ _id: post._id, title: title, body: body, likes: post.likes })
+    handleClose();
   }
 
   return (
-
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
@@ -44,43 +36,35 @@ function PostDialog({ post }) {
             autoFocus
             margin="dense"
             id="title"
-            label="title"
+            label="Title"
             type="text"
             defaultValue={post.title}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
-
           />
-
           <TextField
             autoFocus
             margin="dense"
             id="body"
-            label="body"
+            label="Body"
             type="text"
             defaultValue={post.body}
             onChange={(e) => setBody(e.target.value)}
             multiline
             fullWidth
           />
-
-
-
-
         </DialogContent>
         <DialogActions>
           <Button
             disabled={!title}
             onClick={() => {
               handleSave();
-              handleClose();
             }} color="primary">
             Save
           </Button>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-
         </DialogActions>
       </Dialog>
     </div>

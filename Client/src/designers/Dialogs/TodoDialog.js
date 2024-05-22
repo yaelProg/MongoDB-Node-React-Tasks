@@ -9,12 +9,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useUpdateTodoMutation } from '../../todos/todosApiSlice';
 import DeleteIcon from "@mui/icons-material/Delete";
-import { FormControl, InputLabel, MenuItem, Select, Paper, IconButton } from '@mui/material';
+import { Paper, IconButton } from '@mui/material';
 
-function TodoDialog({ todo }) {
+function TodoDialog({ todo, open, setOpen }) {
   const [Edit] = useUpdateTodoMutation()
 
-  const [open, setOpen] = React.useState(true);
   const [title, setTitle] = React.useState(todo.title)
   const [tags, setTags] = React.useState(todo.tags)
 
@@ -40,11 +39,10 @@ function TodoDialog({ todo }) {
 
   const handleSave = () => {
     Edit({ _id: todo._id, title: title, tags: tags })
-
+    handleClose();
   }
 
   return (
-
     <div >
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
@@ -56,7 +54,7 @@ function TodoDialog({ todo }) {
             autoFocus
             margin="dense"
             id="title"
-            label="title"
+            label="Title"
             type="text"
             defaultValue={todo.title}
             onChange={(e) => setTitle(e.target.value)}
@@ -80,7 +78,9 @@ function TodoDialog({ todo }) {
                     fullWidth
                     style={{ marginRight: '8px' }} // Adjust spacing between TextField and DeleteIcon
                   />
-                  <DeleteIcon color="error" onClick={() => onDeleteTag(index)} style={{ cursor: "pointer" }} />
+                  <IconButton onClick={() => onDeleteTag(index)}>
+                    <DeleteIcon color="error" />
+                  </IconButton>
                 </Paper>
               </div>
             ))}
@@ -92,7 +92,6 @@ function TodoDialog({ todo }) {
             disabled={!title}
             onClick={() => {
               handleSave();
-              handleClose();
             }} color="primary">
             Save
           </Button>

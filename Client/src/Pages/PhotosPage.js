@@ -6,17 +6,19 @@ import { useGetPhotosQuery } from "../photos/photosApiSlice";
 import PrivateRoute from "../auth/PrivateRoute";
 import NavBar_Caller from "../designers/NavBar_Caller";
 import "./page.css"
+import AddPhotoDialog from "../designers/Dialogs/AddPhotoDialog";
 
 const UsersPage = () => {
   const { CheckToken } = PrivateRoute();
   CheckToken();
   const { data: photos, isError, isLoading, error } = useGetPhotosQuery();
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   return (
     <div className="sPage">
       <NavBar_Caller />
       <br></br>
-      <AddButton p={"Photos"} />
+      <AddButton setOpenDialog={setOpenDialog} />
 
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {error.message}</p>}
@@ -33,6 +35,7 @@ const UsersPage = () => {
       ) : (
         <Typography>No photos in DB</Typography>
       )}
+      <AddPhotoDialog open={openDialog} setOpen={setOpenDialog} />
     </div>
   );
 };

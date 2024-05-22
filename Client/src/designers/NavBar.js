@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -80,7 +79,7 @@ function NavBar({ isAdmin = false }) {
 
   return (
 
-    <AppBar position="static">
+    <AppBar position="static" >
       <Container maxWidth="xl" sx={{ backgroundColor: 'white' }}>
         <Toolbar disableGutters>
           {/* <Typography
@@ -185,17 +184,28 @@ function NavBar({ isAdmin = false }) {
       </Container>
 
       <Button
-        style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
-          alignItems: 'center',
-          position: 'absolute',
-          top: '20px',
-          right: '20px',
-          padding: '10px 20px',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}
+      style={{
+        maxWidth: '100%',
+        maxHeight: '100%',
+        alignItems: 'center',
+        position: 'absolute',
+        top: '3%',
+        right: '2%',
+        padding: '1% 2%',
+        borderRadius: '5%',
+        cursor: 'pointer'
+      }}
+        // style={{
+        //   maxWidth: '100%',
+        //   maxHeight: '100%',
+        //   alignItems: 'center',
+        //   position: 'absolute',
+        //   top: '20px',
+        //   right: '20px',
+        //   padding: '10px 20px',
+        //   borderRadius: '5px',
+        //   cursor: 'pointer'
+        // }}
         variant="contained"
         color="primary"
         onClick={handleLogoutClick}

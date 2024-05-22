@@ -7,18 +7,20 @@ import PrivateRoute from "../auth/PrivateRoute";
 import NavBar_Caller from "../designers/NavBar_Caller";
 import Button from '@mui/material/Button';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import AddTodoDialog from "../designers/Dialogs/AddTodoDialog";
 
 
 const TodosPage = () => {
   const { CheckToken } = PrivateRoute();
   CheckToken();
   const { data: todos, isError, isLoading, error } = useGetTodosQuery();
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   return (
     <div className="sPage">
       <NavBar_Caller />
       <br />
-      <AddButton p={"Todos"} />
+      <AddButton setOpenDialog={setOpenDialog} />
 
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {error.message}</p>}
@@ -34,6 +36,7 @@ const TodosPage = () => {
       ) : (
         <Typography>No todos in DB</Typography>
       )}
+      <AddTodoDialog open={openDialog} setOpen={setOpenDialog} />
     </div>
   );
 };

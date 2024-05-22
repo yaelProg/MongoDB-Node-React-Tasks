@@ -73,9 +73,9 @@ const Login = () => {
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
+        {'Our Site © '}
         <Link color="inherit" href="https://mui.com/">
-Our Site        </Link>{' '}
+Sari & Yaeli        </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
       </Typography>
@@ -141,7 +141,7 @@ Our Site        </Link>{' '}
             <Grid container>
               <Grid item xs>
                 <Link to={'/Register'} variant="body2" >
-                  {"כניסת מנהלים  "}
+                  {"הרשמת מנהלים  "}
                 </Link>
               </Grid>
               <Grid item>

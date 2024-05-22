@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Card, CardMedia, Fab } from "@mui/material";
+import { Box, Card, CardMedia, Fab, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PhotoDialog from "./Dialogs/PhotoDialog";
@@ -30,9 +30,6 @@ const PhotoDesigner = ({ photo }) => {
     setConfirmDelete(false);
   };
 
-  const [selectedPicture, setSelectedPicture] = useState(null);
-
-
   return (
     <>
       <br />
@@ -53,11 +50,11 @@ const PhotoDesigner = ({ photo }) => {
           alt={photo.title}
         />
         <Box sx={{ p: 1 }}>
-        <Typography variant="h6" gutterBottom style={{ fontWeight: "bold" }}>
-          {photo.title}
-        </Typography>
+          <Typography variant="h6" gutterBottom style={{ fontWeight: "bold" }}>
+            {photo.title}
+          </Typography>
           {/* <Box sx={{ display: "flex", justifyContent: "space-between" }}> */}
-            {/* <Fab
+          {/* <Fab
               color="primary"
               aria-label="edit"
               onClick={(e) => {
@@ -68,7 +65,7 @@ const PhotoDesigner = ({ photo }) => {
             >
               <EditIcon />
             </Fab> */}
-            {/* <Fab
+          {/* <Fab
               color="error"
               aria-label="delete"
               onClick={handleDeleteClick}
@@ -76,41 +73,40 @@ const PhotoDesigner = ({ photo }) => {
             >
               <DeleteIcon />
             </Fab> */}
-           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
-          <EditIcon
-            color="primary"
-            onClick={(e) => {
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
+            <IconButton onClick={(e) => {
               e.stopPropagation();
               setOpenDialog(true);
-            }}
-            style={{ cursor: "pointer", marginRight: "8px" }}
-          />
-          <DeleteIcon
-            color="error"
-            onClick={handleDeleteClick}
-            style={{ cursor: "pointer" }}
-          />
+            }}>
+              <EditIcon
+                color="primary"
+              />
+            </IconButton>
+            <IconButton onClick={handleDeleteClick}>
+              <DeleteIcon
+                color="error"
+              />
+            </IconButton>
           </div>
-            <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
-              <DialogTitle>Confirm Delete</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  Are you sure you want to delete {photo.title}?
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleDeleteCancel} color="primary">
-                  Cancel
-                </Button>
-                <Button onClick={handleDeleteConfirm} color="secondary">
-                  Delete
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </Box>
-        {/* </Box> */}
+          <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
+            <DialogTitle>Confirm Delete</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Are you sure you want to delete {photo.title}?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteCancel} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={handleDeleteConfirm} color="secondary">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Box>
       </Card>
-      {openDialog && <PhotoDialog photo={photo} />}
+      <PhotoDialog photo={photo} open={openDialog} setOpen={setOpenDialog} />
     </>
   );
 };

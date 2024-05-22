@@ -8,21 +8,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useCreateTodoMutation } from '../../todos/todosApiSlice';
-import { useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { FormControl, InputLabel, MenuItem, Select, Paper, IconButton } from '@mui/material';
+import { IconButton, Paper } from '@mui/material';
 
-function AddTodoDialog() {
+function AddTodoDialog({ open, setOpen }) {
   const [Add] = useCreateTodoMutation()
 
-
-
-  const [open, setOpen] = React.useState(true);
   const [title, setTitle] = React.useState()
   const [tags, setTags] = React.useState([])
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const onChangeTag = (val, index) => {
     const updatedTagsArray = [...tags];
@@ -46,7 +39,7 @@ function AddTodoDialog() {
 
   const handleSave = () => {
     Add({ title: title, tags: tags })
-
+    handleClose();
   }
 
   return (
@@ -62,7 +55,7 @@ function AddTodoDialog() {
             autoFocus
             margin="dense"
             id="title"
-            label="title"
+            label="Title"
             type="text"
             placeholder='add a title'
             onChange={(e) => setTitle(e.target.value)}
@@ -85,27 +78,26 @@ function AddTodoDialog() {
                     fullWidth
                     style={{ marginRight: '8px' }} // Adjust spacing between TextField and DeleteIcon
                   />
-                  <DeleteIcon color="error" onClick={() => onDeleteTag(index)} style={{ cursor: "pointer" }} />
+                  <IconButton onClick={() => onDeleteTag(index)}>
+                    <DeleteIcon color="error" />
+                  </IconButton>
                 </Paper>
               </div>
             ))}
           </Paper>
           <Button color="primary" onClick={onAddTag}>Add Tag</Button>
-
         </DialogContent>
         <DialogActions>
           <Button
             disabled={!title}
             onClick={() => {
               handleSave();
-              handleClose();
             }} color="primary">
             Save
           </Button>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-
         </DialogActions>
       </Dialog>
     </div>

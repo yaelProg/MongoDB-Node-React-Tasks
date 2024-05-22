@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Fab } from "@mui/material";
+import { Box, Card, CardContent, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UserDialog from "./Dialogs/UserDialog";
@@ -30,39 +30,31 @@ const UserDesigner = ({ user }) => {
     setConfirmDelete(false);
   };
 
-
   return (
     <Box mb={2}>
       <Card>
         <CardContent>
           <br />
           <Typography variant="h6" gutterBottom style={{ fontWeight: "bold" }}>
-          {user.firstName + ' ' + user.lastName}
-        </Typography>
-          {/* <p>{user.email}</p> */}
+            {user.firstName + ' ' + user.lastName}
+          </Typography>
           <Box display="flex" justifyContent="flex-end" marginRight="8px">
             <Box>
-              {/* <Fab color="secondary" aria-label="edit" size="small" onClick={() => setOpenDialog(true)}>
-                <EditIcon />
-              </Fab>
-              <Fab color="error" aria-label="delete" size="small" onClick={handleDeleteClick} sx={{ marginLeft: 1 }}>
-                <DeleteIcon />
-              </Fab> */}
               <div >
-          <EditIcon
-            color="primary"
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpenDialog(true);
-            }}
-            // style={{ cursor: "pointer", marginRight: "8px" }}
-          />
-          <DeleteIcon
-            color="error"
-            onClick={handleDeleteClick}
-            style={{ cursor: "pointer" }}
-          />
-          </div>
+                <IconButton onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenDialog(true);
+                }}>
+                  <EditIcon
+                    color="primary"
+                  /></IconButton>
+                <IconButton onClick={handleDeleteClick}>
+                  <DeleteIcon
+                    color="error"
+                    style={{ cursor: "pointer" }}
+                  />
+                </IconButton>
+              </div>
               <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
                 <DialogTitle>Confirm Delete</DialogTitle>
                 <DialogContent>
@@ -83,7 +75,7 @@ const UserDesigner = ({ user }) => {
           </Box>
         </CardContent>
       </Card>
-      {openDialog && <UserDialog user={user} />}
+      <UserDialog user={user} open={openDialog} setOpen={setOpenDialog} />
     </Box>
   );
 };

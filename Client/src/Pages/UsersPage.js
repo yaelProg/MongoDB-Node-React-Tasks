@@ -6,12 +6,14 @@ import { useGetUsersQuery } from "../users/userApiSlice";
 import PrivateRoute from "../auth/PrivateRoute";
 import NavBar_Caller from "../designers/NavBar_Caller";
 import DecodeToken from "../auth/decodeToken";
+import AddUserDialog from "../designers/Dialogs/AddUserDialog";
 
 const UsersPage = () => {
   const { CheckToken } = PrivateRoute();
   CheckToken();
   const { data: users, isError, isLoading, error } = useGetUsersQuery();
   const userRoles = DecodeToken().roles;
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   if (userRoles !== "admin") {
     return <p>You are not allowed here</p>;
@@ -21,7 +23,7 @@ const UsersPage = () => {
     <div className="sPage">
       <NavBar_Caller />
       <br />
-      <AddButton p={"Users"} />
+      <AddButton setOpenDialog={setOpenDialog} />
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {error.message}</p>}
       {users && users.length > 0 ? (
@@ -36,6 +38,7 @@ const UsersPage = () => {
       ) : (
         <Typography>No users in DB</Typography>
       )}
+      <AddUserDialog open={openDialog} setOpen={setOpenDialog}/>
     </div>
   );
 };

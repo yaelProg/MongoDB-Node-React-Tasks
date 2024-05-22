@@ -8,8 +8,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import IsraelFlag from '../designers/Dialogs/IsraelFlag.png'; // Assuming IsraelFlag component exists for displaying the flag
 import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
@@ -19,41 +17,22 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
-// import PhoneIcon from '@mui/icons-material/FlagIcon/PhoneIcon'; // ייבא סמל דגל טלפון
-
-// import Register from '../auth/Register'
 
 const Register = () => {
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // const isValid = username && password && firstName && lastName
-  const [registerFunc, { isError, isSuccess, data, error }] =
-    useRegisterMutation()
+  const [registerFunc, { isError, isSuccess, data, error }] = useRegisterMutation()
+
+  const roles = ["user","admin"]
+
   useEffect(() => {
     if (isSuccess) {
       console.log('success!! goung to put token')
       dispatch(setToken(data))
-      //console.log('sucsess')
-      // if(data.roles=='admin')
-      //     navigate("/NavBar" , { replace: true })
-      // else
-      // navigate("/NavBarUser" , { replace: true })
       navigate("/HomePage", { replace: true })
     }
   }, [isSuccess])
-
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     registerFunc(formData)
-  //     };
-
-  // const navigate = useNavigate()
-  // useEffect(()=>{
-  //     if(isSuccess){
-  //         navigate("")
-  //     }
-
-  // }, [isSuccess])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,6 +41,10 @@ const Register = () => {
     if (data.get('roles') != "user" && data.get('roles') != "admin") {
       roles = undefined
       console.log(roles)
+    }
+    if (!(data.get('generalPassword') && data.get('firstName') && data.get('lastName') && data.get('username') && data.get('password'))) {
+      alert("Some required fields are missing")
+      return
     }
     registerFunc({
       generalPassword: data.get('generalPassword'),
@@ -83,9 +66,9 @@ const Register = () => {
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
+        {'Our Site © '}
         <Link color="inherit" href="https://mui.com/">
-          Your Website
+          Sari & Yaeli
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -94,15 +77,6 @@ const Register = () => {
   }
 
   const defaultTheme = createTheme();
-
-
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const formData = new  FormData (e.currentTarget);
-  //   registerFunc(formData)
-  //   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -161,7 +135,7 @@ const Register = () => {
                   required
                   fullWidth
                   id="username"
-                  label="username"
+                  label="User Name"
                   name="username"
                   autoComplete="username"
                 />
@@ -190,7 +164,7 @@ const Register = () => {
                 <TextField
                   fullWidth
                   name="address"
-                  label="address"
+                  label="Address"
                   type="address"
                   id="address"
                   autoComplete="address"
@@ -200,7 +174,7 @@ const Register = () => {
                 <TextField
                   fullWidth
                   id="phone"
-                  label="Phone number"
+                  label="Phone Number"
                   name="phone"
                   autoComplete="phone"
                   type="tel"
@@ -208,7 +182,6 @@ const Register = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        {/* <IsraelFlag /> */}
                         <img src={IsraelFlag} alt="Israel Flag"
                           style={{ height: '20px', marginRight: '5px' }}
                         />
@@ -229,7 +202,6 @@ const Register = () => {
               </Grid>
             </Grid>
             <Button
-            // disabled ={isValid}
               type="submit"
               fullWidth
               variant="contained"
@@ -238,6 +210,11 @@ const Register = () => {
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
+              <Grid item xs>
+                <Link to={'/SignUp'} variant="body2" >
+                  {"הרשמת משתמשים  "}
+                </Link>
+              </Grid>
               <Grid item>
                 <Link to={'/Login'} >
                   Already have an account? Sign in

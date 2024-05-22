@@ -18,7 +18,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import PhoneInput from 'react-phone-number-input'
+// import PhoneInput from 'react-phone-number-input'
 import IsraelFlag from '../designers/Dialogs/IsraelFlag.png'; // Assuming IsraelFlag component exists for displaying the flag
 
 
@@ -62,6 +62,10 @@ const SignUp = () => {
       roles = undefined
       console.log(roles)
     }
+    if (!(data.get('firstName') && data.get('lastName') && data.get('username') && data.get('password'))) {
+      alert("Some required fields are missing")
+      return
+    }
     registerFunc({
       generalPassword: data.get('generalPassword'),
       username: data.get('username'),
@@ -92,9 +96,6 @@ const SignUp = () => {
   }
 
   const defaultTheme = createTheme();
-
-
-
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -159,7 +160,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   id="username"
-                  label="username"
+                  label="User Name"
                   name="username"
                   autoComplete="username"
                 />
@@ -188,7 +189,7 @@ const SignUp = () => {
                 <TextField
                   fullWidth
                   name="address"
-                  label="address"
+                  label="Address"
                   type="address"
                   id="address"
                   autoComplete="address"
@@ -206,9 +207,8 @@ const SignUp = () => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  
                   id="phone"
-                  label="Phone number"
+                  label="Phone Number"
                   name="phone"
                   autoComplete="phone"
                   type="tel"
@@ -245,6 +245,11 @@ const SignUp = () => {
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
+              <Grid item xs>
+                <Link to={'/Register'} variant="body2" >
+                  {"הרשמת מנהלים  "}
+                </Link>
+              </Grid>
               <Grid item>
                 <Link to={'/Login'} >
                   Already have an account? Sign in

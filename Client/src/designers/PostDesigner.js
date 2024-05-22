@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
-import { red } from '@mui/material/colors';
+import { Card, CardContent, IconButton, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PostDialog from "./Dialogs/PostDialog";
@@ -42,7 +41,7 @@ const PostDesigner = ({ post }) => {
   const addLike = () => {
     Edit({ _id: post._id, title: post.title, body: post.body, likes: postLikes + 1 });
     setPostLikes(postLikes + 1);
-}
+  }
 
 
   return (
@@ -97,50 +96,45 @@ const PostDesigner = ({ post }) => {
               </React.Fragment>
             ))}
           </Typography>
-
-
-
         )}
-     <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px", marginBottom: "0px" }}>
-  <Button style={{ cursor: "pointer", marginRight: "8px", borderRadius: "100px", border: "1px solid" }} onClick={addLike}>
-    <FavoriteIcon color="red" /> <div>{postLikes}</div>
-  </Button>
-  <div>
-    <EditIcon
-      color="primary"
-      onClick={(e) => {
-        e.stopPropagation();
-        setOpenDialog(true);
-      }}
-      style={{ cursor: "pointer", marginRight: "8px" }}
-    />
-    <DeleteIcon
-      color="error"
-      onClick={handleDeleteClick}
-      style={{ cursor: "pointer" }}
-    />
-  </div>
-</div>
-<Dialog open={confirmDelete} onClose={handleDeleteCancel}>
-  <DialogTitle>Confirm Delete</DialogTitle>
-  <DialogContent>
-    <DialogContentText>
-      Are you sure you want to delete {post.title}?
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={handleDeleteCancel} color="primary">
-      Cancel
-    </Button>
-    <Button onClick={handleDeleteConfirm} color="secondary">
-      Delete
-    </Button>
-  </DialogActions>
-</Dialog>
-
-
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px", marginBottom: "0px" }}>
+          <Button style={{ cursor: "pointer", marginRight: "8px", borderRadius: "100px", border: "1px solid" }} onClick={addLike}>
+            <FavoriteIcon color="red" /> <div>{postLikes}</div>
+          </Button>
+          <div>
+            <IconButton onClick={(e) => {
+              e.stopPropagation();
+              setOpenDialog(true);
+            }}>
+              <EditIcon
+                color="primary"
+              />
+            </IconButton>
+            <IconButton onClick={handleDeleteClick}>
+              <DeleteIcon
+                color="error"
+              />
+            </IconButton>
+          </div>
+        </div>
+        <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
+          <DialogTitle>Confirm Delete</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete {post.title}?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDeleteCancel} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleDeleteConfirm} color="secondary">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
       </CardContent>
-      {openDialog && <PostDialog post={post} />}
+      <PostDialog post={post} open={openDialog} setOpen={setOpenDialog} />
     </Card>
   );
 };

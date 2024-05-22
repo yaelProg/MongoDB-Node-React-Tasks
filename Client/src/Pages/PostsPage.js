@@ -1,13 +1,11 @@
 import React from "react";
-import { Grid, Typography, Card, CardContent, Fab } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import PostDesigner from "../designers/PostDesigner";
 import AddButton from "../designers/AddButton";
 import { useGetPostsQuery } from "../posts/postsApiSlice";
 import PrivateRoute from "../auth/PrivateRoute";
 import NavBar_Caller from "../designers/NavBar_Caller";
-import PostDialog from "../designers/Dialogs/PostDialog";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import AddPostDialog from "../designers/Dialogs/AddPostDialog";
 
 const PostsPage = () => {
   const { CheckToken } = PrivateRoute();
@@ -21,20 +19,11 @@ const PostsPage = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [selectedPost, setSelectedPost] = React.useState(null);
 
-  const handleEditClick = (post) => {
-    setSelectedPost(post);
-    setOpenDialog(true);
-  };
-
-  const handleDeleteClick = (postId) => {
-    // Code to delete post
-  };
-
   return (
     <div className="sPage">
       <NavBar_Caller />
       <br></br>
-      <AddButton p={"Posts"} />
+      <AddButton setOpenDialog={setOpenDialog} />
 
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {error.message}</p>}
@@ -51,6 +40,7 @@ const PostsPage = () => {
       ) : (
         <Typography>No photos in DB</Typography>
       )}
+      <AddPostDialog open={openDialog} setOpen={setOpenDialog} />
     </div>
   );
 };
