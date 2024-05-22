@@ -9,7 +9,9 @@ const getAllPhotos = async (req, res)=>{
     res.json(photos)
 }
 const createNewPhoto = async(req, res)=> {
-    const {title, imageUrl}= req.body
+    const {title}= req.body
+    const imageUrl =(req.file?.filename? req.file.filename:"") 
+    console.log(imageUrl);
     if(!title)
     return res.status(400).json({message:'title is required'})
 const newPhoto = await Photo.create({title, imageUrl})

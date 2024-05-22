@@ -19,6 +19,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../auth/authSlice";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 function NavBar({ isAdmin = false }) {
@@ -193,23 +194,18 @@ function NavBar({ isAdmin = false }) {
         right: '2%',
         padding: '1% 2%',
         borderRadius: '5%',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        display: 'flex', // Ensures flex layout
+    justifyContent: 'center', // Centers children horizontally
+    gap: '0.5rem' // Adds space between icon and text
       }}
-        // style={{
-        //   maxWidth: '100%',
-        //   maxHeight: '100%',
-        //   alignItems: 'center',
-        //   position: 'absolute',
-        //   top: '20px',
-        //   right: '20px',
-        //   padding: '10px 20px',
-        //   borderRadius: '5px',
-        //   cursor: 'pointer'
-        // }}
+
         variant="contained"
         color="primary"
         onClick={handleLogoutClick}
       >
+                <LogoutIcon/>
+
         Logout
       </Button>
 

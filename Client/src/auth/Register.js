@@ -17,14 +17,25 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
 
 const Register = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [registerFunc, { isError, isSuccess, data, error }] = useRegisterMutation()
-
-  const roles = ["user","admin"]
+  const [selectedRole, setSelectedRole] = React.useState('user');
+ 
+  const roles = [
+    {
+      value: 'user',
+      label: 'User',
+    },
+    {
+      value: 'admin',
+      label: 'Admin',
+    },
+  ];
 
   useEffect(() => {
     if (isSuccess) {
@@ -33,6 +44,11 @@ const Register = () => {
       navigate("/HomePage", { replace: true })
     }
   }, [isSuccess])
+
+  
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -192,6 +208,23 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
+      <TextField
+        fullWidth
+        id="roles"
+        select
+        label="Role"
+        name="roles"
+        value={selectedRole}
+        onChange={handleRoleChange}
+      >
+        {roles.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+    </Grid>
+              {/* <Grid item xs={12}>
                 <TextField
                   fullWidth
                   id="roles"
@@ -199,7 +232,7 @@ const Register = () => {
                   name="roles"
                   autoComplete="roles"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
