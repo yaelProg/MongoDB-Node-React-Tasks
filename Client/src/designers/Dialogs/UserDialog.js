@@ -1,4 +1,3 @@
-////הורדתי תעמוד הזה קומפלט מMUIד
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +10,10 @@ import { useUpdateUserMutation } from '../../users/userApiSlice';
 import { InputAdornment } from '@material-ui/core';
 import IsraelFlag from './IsraelFlag.png'; // Assuming IsraelFlag component exists for displaying the flag
 
-
+/**
+ * UserDialog component for editing user details.
+ * Renders a dialog form for editing user information.
+**/
 function UserDialog({ user, open, setOpen }) {
   const [Edit] = useUpdateUserMutation()
 
@@ -22,19 +24,24 @@ function UserDialog({ user, open, setOpen }) {
   const [address, setAddress] = React.useState(user.address)
   const [phone, setPhone] = React.useState(user.phone)
 
+  // Handles the closure of the dialog.
   const handleClose = () => {
     setOpen(false);
   };
 
+  /**
+   * Handles the save action.
+   * Calls the mutation to update the user details and closes the dialog.
+   */
   const handleSave = () => {
     Edit({ _id: user._id, firstName: firstName, lastName: lastName, userName: userName, email: email, address: address, phone: phone })
     handleClose();
   }
 
+  // Checks if the input fields are valid for enabling the save button.
   const isValid = userName && firstName && lastName
 
   return (
-
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
@@ -95,25 +102,11 @@ function UserDialog({ user, open, setOpen }) {
             onChange={(e) => setAddress(e.target.value)}
             fullWidth
           />
-          {/* <FormControl fullWidth>
-    <InputLabel htmlFor="phone">Phone number</InputLabel>
-     <Select
-        labelId="phone"
-        id="phone"
-        value={''}
-        onChange={() => {}}
-        startAdornment={
-          
-        <MenuItem value={''} disabled>Select country</MenuItem>
-        <MenuItem value={'+972'}>+972 - Israel</MenuItem>
-        {/* Add more countries as needed */}
-          {/* </Select>  */}
           <TextField
             autoFocus
             margin="dense"
             id="phone"
             label="Phone"
-            // type="text"
             defaultValue={user.phone}
             onChange={(e) => setPhone(e.target.value)}
             fullWidth
@@ -122,7 +115,6 @@ function UserDialog({ user, open, setOpen }) {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  {/* <IsraelFlag /> */}
                   <img src={IsraelFlag} alt="Israel Flag"
                     style={{ height: '20px', marginRight: '5px' }}
                   />
@@ -148,7 +140,6 @@ function UserDialog({ user, open, setOpen }) {
       </Dialog>
     </div>
   );
-
 }
-export default UserDialog;
 
+export default UserDialog;

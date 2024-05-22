@@ -6,22 +6,19 @@ import PostsPage from './Pages/PostsPage';
 import PhotosPage from './Pages/PhotosPage';
 import TodosPage from './Pages/TodosPage';
 import HomePage from './Pages/HomePage';
-import AddButton from './designers/AddButton';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import SignUp from './auth/SignUp';
-//import toDoSlice from './store/ToDoSlice';
-// import { Provider } from 'react-redux';
-// import { configureStore } from '@reduxjs/toolkit';
 
+/**
+ * Main component for the application.
+ * This component defines the routing structure for different pages in the application.
+ */
 function App() {
 
   return (
     <>
-
       <div className="App">
-
-
 
         <Routes>
           <Route path="/" element={<Login />}> </Route>
@@ -35,11 +32,8 @@ function App() {
           <Route path="/NavBar" element={<NavBar />}> </Route>
           <Route path="/Login" element={<Login />}> </Route>
         </Routes>
-
       </div>
-
     </>
-
   );
 }
 

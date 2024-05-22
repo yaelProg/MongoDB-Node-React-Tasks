@@ -11,29 +11,35 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { useUpdateTodoCompleteMutation, useDeleteTodoMutation } from "../todos/todosApiSlice";
 
+// TodoDesigner component displays a todo item with options to mark as complete, edit, and delete.
 const TodoDesigner = ({ todo }) => {
-  const [isChecked, setIsChecked] = React.useState(todo.completed);
-  const [openDialog, setOpenDialog] = React.useState(false);
   const [UpdateCompleted] = useUpdateTodoCompleteMutation();
   const [Delete] = useDeleteTodoMutation();
+
+  const [isChecked, setIsChecked] = React.useState(todo.completed);
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [confirmDelete, setConfirmDelete] = React.useState(false);
 
   const todoTags = todo.tags
   const [newTags, setNewTags] = React.useState(todoTags ? todoTags : []);
 
+  // Handles the click event for deleting the todo item.
   const handleDeleteClick = () => {
     setConfirmDelete(true);
   };
 
+  // Confirms the deletion of the todo item.
   const handleDeleteConfirm = () => {
     setConfirmDelete(false);
     Delete(todo._id);
   };
 
+  // Cancels the deletion action.
   const handleDeleteCancel = () => {
     setConfirmDelete(false);
   };
 
+  // Handles the change event for toggling the completion status of the todo item.
   const handleCheckChange = () => {
     setIsChecked(!isChecked);
     UpdateCompleted({ id: todo._id });
@@ -45,14 +51,6 @@ const TodoDesigner = ({ todo }) => {
         <CardContent>
           <Checkbox checked={isChecked} onChange={handleCheckChange} />
           <h2>{todo.title}</h2>
-          {/* <Box display="flex" justifyContent="center"> */}
-          {/* <Box> */}
-          {/* <Fab color="secondary" aria-label="edit" size="small" onClick={() => setOpenDialog(true)}>
-                <EditIcon />
-              </Fab>
-              <Fab color="error" aria-label="delete" size="small" onClick={handleDeleteClick} sx={{ marginLeft: 1 }}>
-                <DeleteIcon />
-              </Fab> */}
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
             <IconButton onClick={(e) => {
               e.stopPropagation();
@@ -68,6 +66,7 @@ const TodoDesigner = ({ todo }) => {
               />
             </IconButton>
           </div>
+          {/* Confirmation dialog for delete action */}
           <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
             <DialogTitle>Confirm Delete</DialogTitle>
             <DialogContent>
@@ -86,7 +85,8 @@ const TodoDesigner = ({ todo }) => {
           </Dialog>
         </CardContent>
       </Card>
-      <TodoDialog todo={todo} open={openDialog} setOpen={setOpenDialog}/>
+      {/* Dialog for editing todo */}
+      <TodoDialog todo={todo} open={openDialog} setOpen={setOpenDialog} />
     </Box>
   );
 };

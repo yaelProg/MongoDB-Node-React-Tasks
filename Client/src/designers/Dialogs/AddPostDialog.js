@@ -1,4 +1,3 @@
-////הורדתי תעמוד הזה קומפלט מMUIד
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,7 +7,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useCreatePostMutation } from '../../posts/postsApiSlice';
 
-
+/**
+ * AddPostDialog component for adding new posts.
+ * Renders a dialog form for adding a new post with title and body.
+**/
 function AddPostDialog({ open, setOpen }) {
   const [Add] = useCreatePostMutation()
 
@@ -16,11 +18,15 @@ function AddPostDialog({ open, setOpen }) {
   const [body, setBody] = React.useState()
   const [likes, setLikes] = React.useState()
 
+// Handles the closure of the dialog.
   const handleClose = () => {
-    // setLikes()
     setOpen(false);
   };
 
+  /**
+   * Handles the save action.
+   * Calls the mutation to add the new post and closes the dialog.
+   */
   const handleSave = () => {
     Add({ title: title, body: body, likes: likes })
     handleClose()
@@ -70,7 +76,6 @@ function AddPostDialog({ open, setOpen }) {
       </Dialog>
     </div>
   );
-
 }
-export default AddPostDialog;
 
+export default AddPostDialog;

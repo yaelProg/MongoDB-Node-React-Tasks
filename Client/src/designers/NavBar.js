@@ -6,9 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
@@ -21,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { removeToken } from "../auth/authSlice";
 import LogoutIcon from '@mui/icons-material/Logout';
 
-
 function NavBar({ isAdmin = false }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -29,9 +26,13 @@ function NavBar({ isAdmin = false }) {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
+    // Dispatch action to remove token when logging out
     dispatch(removeToken());
+    // Redirect to login page after logging out
     navigate("/");
   };
+
+  // Array to store navigation pages
   let pages = [
     {
       key: 'HomePage',
@@ -55,6 +56,7 @@ function NavBar({ isAdmin = false }) {
     }
   ];
 
+  // Add Users page if isAdmin is true
   if (isAdmin) {
     pages.push({
       key: 'Users',
@@ -63,48 +65,25 @@ function NavBar({ isAdmin = false }) {
     })
   }
 
+  // Handlers for opening and closing navigation menu
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-
   };
 
   const linkStyle = { my: 2, color: 'primary', display: 'block', margin: '0.5rem 0.5rem' }
+  // Styling for active link
   const linkStyleActive = { borderBottom: '2px solid #1976d2', borderRadius: '0' }
 
   return (
-
     <AppBar position="static" >
       <Container maxWidth="xl" sx={{ backgroundColor: 'white' }}>
         <Toolbar disableGutters>
-          {/* <Typography
-          to = {'/'}
-                variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color:'gray',
-              
-              textDecoration: 'none',
-            }}
-          >
-            
-          </Typography> */}
-
+          {/* Navigation menu for small screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -133,40 +112,18 @@ function NavBar({ isAdmin = false }) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
+              {/* Render navigation links */}
               {pages.map((page) => (
-                ///here is the onclick of the nav items, done in a
-
                 <MenuItem key={page.key} onClick={handleCloseNavMenu}>
                   {page.icon}
                   <Link to={'/' + page.key} >
                     <label style={{ color: 'primary', marginLeft: '0.5rem' }}>{page.name}</label>
                   </Link>
-                  {/* {page.icon}
-
-                  <Link to={'/' + page.key}>{page.name}</Link> */}
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'gray',
-              textDecoration: 'none',
-            }}
-          >
-            
-          </Typography> */}
+          {/* Navigation links for large screens */}
           <Box sx={{ backgroundColor: 'white', width: '100%', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -179,40 +136,33 @@ function NavBar({ isAdmin = false }) {
               </Button>
             ))}
           </Box>
-
-          { }
         </Toolbar>
       </Container>
-
+      {/* Logout button */}
       <Button
-      style={{
-        maxWidth: '100%',
-        maxHeight: '100%',
-        alignItems: 'center',
-        position: 'absolute',
-        top: '3%',
-        right: '2%',
-        padding: '1% 2%',
-        borderRadius: '5%',
-        cursor: 'pointer',
-        display: 'flex', // Ensures flex layout
-    justifyContent: 'center', // Centers children horizontally
-    gap: '0.5rem' // Adds space between icon and text
-      }}
-
+        style={{
+          maxWidth: '100%',
+          maxHeight: '100%',
+          alignItems: 'center',
+          position: 'absolute',
+          top: '3%',
+          right: '2%',
+          padding: '1% 2%',
+          borderRadius: '5%',
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '0.5rem'
+        }}
         variant="contained"
         color="primary"
         onClick={handleLogoutClick}
       >
-                <LogoutIcon/>
-
+        <LogoutIcon />
         Logout
       </Button>
-
-
     </AppBar>
-
   );
-
 }
+
 export default NavBar

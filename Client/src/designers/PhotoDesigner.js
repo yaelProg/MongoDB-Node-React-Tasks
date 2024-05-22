@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Card, CardMedia, Fab, IconButton } from "@mui/material";
+import React from "react";
+import { Box, Card, CardMedia, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PhotoDialog from "./Dialogs/PhotoDialog";
@@ -12,20 +12,24 @@ import Button from '@mui/material/Button';
 import { useDeletePhotoMutation } from "../photos/photosApiSlice";
 import { Typography } from "@material-ui/core";
 
+// PhotoDesigner component displays a card for a photo with options to edit and delete it.
 const PhotoDesigner = ({ photo }) => {
   const [Delete] = useDeletePhotoMutation();
   const [openDialog, setOpenDialog] = React.useState(false);
   const [confirmDelete, setConfirmDelete] = React.useState(false);
 
+  // Handles the click event for deleting the photo.
   const handleDeleteClick = () => {
     setConfirmDelete(true);
   };
 
+  // Confirms the deletion of the photo.
   const handleDeleteConfirm = () => {
     setConfirmDelete(false);
     Delete(photo._id);
   };
 
+  // Cancels the deletion action.
   const handleDeleteCancel = () => {
     setConfirmDelete(false);
   };
@@ -53,26 +57,6 @@ const PhotoDesigner = ({ photo }) => {
           <Typography variant="h6" gutterBottom style={{ fontWeight: "bold" }}>
             {photo.title}
           </Typography>
-          {/* <Box sx={{ display: "flex", justifyContent: "space-between" }}> */}
-          {/* <Fab
-              color="primary"
-              aria-label="edit"
-              onClick={(e) => {
-                e.stopPropagation();
-                setOpenDialog(true);
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              <EditIcon />
-            </Fab> */}
-          {/* <Fab
-              color="error"
-              aria-label="delete"
-              onClick={handleDeleteClick}
-              style={{ cursor: "pointer" }}
-            >
-              <DeleteIcon />
-            </Fab> */}
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
             <IconButton onClick={(e) => {
               e.stopPropagation();
@@ -88,6 +72,7 @@ const PhotoDesigner = ({ photo }) => {
               />
             </IconButton>
           </div>
+          {/* Confirmation dialog for delete action */}
           <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
             <DialogTitle>Confirm Delete</DialogTitle>
             <DialogContent>
@@ -106,6 +91,7 @@ const PhotoDesigner = ({ photo }) => {
           </Dialog>
         </Box>
       </Card>
+      {/* Dialog for editing photo */}
       <PhotoDialog photo={photo} open={openDialog} setOpen={setOpenDialog} />
     </>
   );

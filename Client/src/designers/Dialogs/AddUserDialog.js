@@ -1,4 +1,3 @@
-////הורדתי תעמוד הזה קומפלט מMUIד
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +7,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useCreateUserMutation } from '../../users/userApiSlice';
 
+/**
+ * AddUserDialog component for adding new users.
+ * Renders a dialog form for adding a new user with various fields.
+**/
 function AddUserDialog({ open, setOpen }) {
   const [Add] = useCreateUserMutation()
 
@@ -19,17 +22,21 @@ function AddUserDialog({ open, setOpen }) {
   const [phone, setPhone] = React.useState()
   const [pwd, setPwd] = React.useState()
 
+  // Handles the closure of the dialog.
   const handleClose = () => {
     setOpen(false);
   };
 
+  /**
+   * Handles the save action.
+   * Calls the mutation to add the new user and closes the dialog.
+   */
   const handleSave = async () => {
     await Add({ firstName: firstName, lastName: lastName, userName: userName, email: email, address: address, phone: phone, password: pwd })
     handleClose()
   }
 
   return (
-
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">New User</DialogTitle>
@@ -118,7 +125,6 @@ function AddUserDialog({ open, setOpen }) {
       </Dialog>
     </div>
   );
-
 }
-export default AddUserDialog;
 
+export default AddUserDialog;

@@ -1,4 +1,3 @@
-////הורדתי תעמוד הזה קומפלט מMUIד
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,39 +10,50 @@ import { useCreateTodoMutation } from '../../todos/todosApiSlice';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton, Paper } from '@mui/material';
 
+/**
+ * AddTodoDialog component for adding new todos.
+ * Renders a dialog form for adding a new todo with title and tags.
+**/
 function AddTodoDialog({ open, setOpen }) {
   const [Add] = useCreateTodoMutation()
 
   const [title, setTitle] = React.useState()
   const [tags, setTags] = React.useState([])
 
+  // Handles changes in the tag input.
   const onChangeTag = (val, index) => {
     const updatedTagsArray = [...tags];
     updatedTagsArray[index] = val;
     setTags(updatedTagsArray);
   };
 
+  // Adds a new tag to the tags array.
   const onAddTag = () => {
     setTags([...tags, ""]);
   };
 
+  // Deletes a tag from the tags array.
   const onDeleteTag = (index) => {
     const updatedTagsArray = [...tags];
     updatedTagsArray.splice(index, 1);
     setTags(updatedTagsArray);
   }
 
+  // Handles the closure of the dialog.
   const handleClose = () => {
     setOpen(false);
   };
 
+  /**
+  * Handles the save action.
+  * Calls the mutation to add the new todo and closes the dialog.
+  */
   const handleSave = () => {
     Add({ title: title, tags: tags })
     handleClose();
   }
 
   return (
-
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
         <DialogTitle id="form-dialog-title">New Todo</DialogTitle>
@@ -102,7 +112,6 @@ function AddTodoDialog({ open, setOpen }) {
       </Dialog>
     </div>
   );
-
 }
-export default AddTodoDialog;
 
+export default AddTodoDialog;

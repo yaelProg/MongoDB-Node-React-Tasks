@@ -1,60 +1,62 @@
-[{
-  "_id": {
-    "$oid": "663ad2038b72490b3b6775e8"
+[
+  {
+    "_id": {
+      "$oid": "663ad2038b72490b3b6775e8"
+    },
+    "title": "Exploring the Wonders of Nature ",
+    "body": "Today, I had the opportunity to hike through the lush forests and witness the beauty of nature in its purest form. The chirping of birds, the rustling of leaves, and the fresh scent of the earth filled me with a sense of tranquility. Nature truly is a magnificent masterpiece.",
+    "createdAt": {
+      "$date": "2024-05-08T01:14:43.280Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-20T01:20:14.994Z"
+    },
+    "__v": 0,
+    "likes": 12
   },
-  "title": "Exploring the Wonders of Nature ",
-  "body": "Today, I had the opportunity to hike through the lush forests and witness the beauty of nature in its purest form. The chirping of birds, the rustling of leaves, and the fresh scent of the earth filled me with a sense of tranquility. Nature truly is a magnificent masterpiece.",
-  "createdAt": {
-    "$date": "2024-05-08T01:14:43.280Z"
+  {
+    "_id": {
+      "$oid": "66427f4bedf3571f7e43d6c9"
+    },
+    "title": "The Art of Mindfulness",
+    "body": "In a world filled with distractions, practicing mindfulness has become essential for maintaining inner peace and focus. Taking a moment to pause, breathe, and be fully present in the moment can bring about a profound sense of clarity and calm. Let's embrace the art of mindfulness in our daily lives.",
+    "createdAt": {
+      "$date": "2024-05-13T20:59:55.021Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T17:56:35.138Z"
+    },
+    "__v": 0,
+    "likes": 27
   },
-  "updatedAt": {
-    "$date": "2024-05-20T01:20:14.994Z"
+  {
+    "_id": {
+      "$oid": "66427f69edf3571f7e43d6d1"
+    },
+    "title": "The Magic of Music",
+    "createdAt": {
+      "$date": "2024-05-13T21:00:25.134Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T16:06:44.301Z"
+    },
+    "__v": 0,
+    "body": "Music has a way of touching our souls and evoking a myriad of emotions. Whether it's the soothing melodies of classical music or the upbeat rhythms of pop songs, music has the power to uplift our spirits and transport us to different realms. Let's celebrate the magic of music together.",
+    "likes": 55
   },
-  "__v": 0,
-  "likes": 12
-},
-{
-  "_id": {
-    "$oid": "66427f4bedf3571f7e43d6c9"
-  },
-  "title": "The Art of Mindfulness",
-  "body": "In a world filled with distractions, practicing mindfulness has become essential for maintaining inner peace and focus. Taking a moment to pause, breathe, and be fully present in the moment can bring about a profound sense of clarity and calm. Let's embrace the art of mindfulness in our daily lives.",
-  "createdAt": {
-    "$date": "2024-05-13T20:59:55.021Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-22T17:56:35.138Z"
-  },
-  "__v": 0,
-  "likes": 27
-},
-{
-  "_id": {
-    "$oid": "66427f69edf3571f7e43d6d1"
-  },
-  "title": "The Magic of Music",
-  "createdAt": {
-    "$date": "2024-05-13T21:00:25.134Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-22T16:06:44.301Z"
-  },
-  "__v": 0,
-  "body": "Music has a way of touching our souls and evoking a myriad of emotions. Whether it's the soothing melodies of classical music or the upbeat rhythms of pop songs, music has the power to uplift our spirits and transport us to different realms. Let's celebrate the magic of music together.",
-  "likes": 55
-},
-{
-  "_id": {
-    "$oid": "66427f79edf3571f7e43d6d5"
-  },
-  "title": "Embracing Change",
-  "createdAt": {
-    "$date": "2024-05-13T21:00:41.050Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-20T12:57:11.257Z"
-  },
-  "__v": 0,
-  "body": "A Journey of Growth:\nChange is inevitable, but it is also a catalyst for growth and transformation. Embracing change allows us to step out of our comfort zones, learn new perspectives, and evolve into better versions of ourselves. Let's welcome change with open arms and embark on a journey of personal growth.",
-  "likes": 6
-}]
+  {
+    "_id": {
+      "$oid": "66427f79edf3571f7e43d6d5"
+    },
+    "title": "Embracing Change",
+    "createdAt": {
+      "$date": "2024-05-13T21:00:41.050Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-20T12:57:11.257Z"
+    },
+    "__v": 0,
+    "body": "A Journey of Growth:\nChange is inevitable, but it is also a catalyst for growth and transformation. Embracing change allows us to step out of our comfort zones, learn new perspectives, and evolve into better versions of ourselves. Let's welcome change with open arms and embark on a journey of personal growth.",
+    "likes": 6
+  }
+]

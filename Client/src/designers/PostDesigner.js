@@ -13,36 +13,42 @@ import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDeletePostMutation } from "../posts/postsApiSlice";
 
+// PostDesigner component displays a card for a post with options to edit, delete, and like it.
 const PostDesigner = ({ post }) => {
   const [Delete] = useDeletePostMutation();
+  const [Edit] = useUpdatePostMutation()
+
   const [openDialog, setOpenDialog] = useState(false);
   const [showBody, setShowBody] = useState(false);
   const [confirmDelete, setConfirmDelete] = React.useState(false);
   const [postLikes, setPostLikes] = React.useState(post.likes ? post.likes : 0);
-  const [Edit] = useUpdatePostMutation()
 
+  // Handles the click event for deleting the post.
   const handleDeleteClick = () => {
     setConfirmDelete(true);
   };
 
+  // Confirms the deletion of the post.
   const handleDeleteConfirm = () => {
     setConfirmDelete(false);
     Delete(post._id);
   };
 
+  // Cancels the deletion action.
   const handleDeleteCancel = () => {
     setConfirmDelete(false);
   };
 
+  // Toggles the visibility of the post body.
   const toggleBody = () => {
     setShowBody(!showBody);
   };
 
+  // Handles the click event for adding a like to the post.
   const addLike = () => {
     Edit({ _id: post._id, title: post.title, body: post.body, likes: postLikes + 1 });
     setPostLikes(postLikes + 1);
   }
-
 
   return (
     <Card style={{ cursor: "pointer", marginBottom: "8px" }}>
@@ -51,7 +57,6 @@ const PostDesigner = ({ post }) => {
           {post.title}
         </Typography>
         <Typography variant="body2" color="textSecondary" style={{ textAlign: "center" }}>
-
         </Typography>
         <div style={{ display: "flex", justifyContent: "center", marginTop: "4px" }}>
           <Typography
@@ -63,19 +68,6 @@ const PostDesigner = ({ post }) => {
           </Typography>
         </div>
         {showBody && (
-          // <Typography variant="body1" gutterBottom>
-          //   <br></br>
-          //   {post.body}
-
-          // </Typography>
-          //           <Typography variant="body1" gutterBottom>
-          //   {post.body.match(/.{1,20}/g).map((chunk, index) => (
-          //     <React.Fragment key={index}>
-          //       {chunk}
-          //       <br />
-          //     </React.Fragment>
-          //   ))}
-          // </Typography>
           <Typography variant="body1" gutterBottom>
             {post?.body?.split(' ').reduce((acc, word) => {
               if (acc.length === 0) {
@@ -117,6 +109,7 @@ const PostDesigner = ({ post }) => {
             </IconButton>
           </div>
         </div>
+        {/* Confirmation dialog for delete action */}
         <Dialog open={confirmDelete} onClose={handleDeleteCancel}>
           <DialogTitle>Confirm Delete</DialogTitle>
           <DialogContent>
@@ -134,6 +127,7 @@ const PostDesigner = ({ post }) => {
           </DialogActions>
         </Dialog>
       </CardContent>
+      {/* Dialog for editing post */}
       <PostDialog post={post} open={openDialog} setOpen={setOpenDialog} />
     </Card>
   );

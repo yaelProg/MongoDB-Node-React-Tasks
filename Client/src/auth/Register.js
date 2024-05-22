@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import IsraelFlag from '../designers/Dialogs/IsraelFlag.png'; // Assuming IsraelFlag component exists for displaying the flag
+import IsraelFlag from '../designers/Dialogs/IsraelFlag.png';
 import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -19,14 +19,18 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 
+/**
+ * Register component for user registration.
+ * Displays a form for admin to register users with required details.
+ */
 const Register = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [registerFunc, { isError, isSuccess, data, error }] = useRegisterMutation()
   const [selectedRole, setSelectedRole] = React.useState('user');
- 
-  const roles = [
+
+  const roles = [ // List of available user roles
     {
       value: 'user',
       label: 'User',
@@ -39,17 +43,22 @@ const Register = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      // If registration is successful, dispatch token to Redux store and redirect to HomePage
       console.log('success!! goung to put token')
-      dispatch(setToken(data))
-      navigate("/HomePage", { replace: true })
+      dispatch(setToken(data)) // Dispatch token received from registration
+      navigate("/HomePage", { replace: true }) // Redirect user to HomePage
     }
   }, [isSuccess])
 
-  
+  // Handles selection change of user role.
   const handleRoleChange = (event) => {
     setSelectedRole(event.target.value);
   }
 
+  /**
+     * Handles form submission for user registration.
+     * Validates form data, calls registerFunc mutation, and logs form data.
+     */
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -59,9 +68,10 @@ const Register = () => {
       console.log(roles)
     }
     if (!(data.get('generalPassword') && data.get('firstName') && data.get('lastName') && data.get('username') && data.get('password'))) {
-      alert("Some required fields are missing")
+      alert("Some required fields are missing") // Alert user if required fields are missing
       return
     }
+    // Call registerFunc mutation with form data
     registerFunc({
       generalPassword: data.get('generalPassword'),
       username: data.get('username'),
@@ -79,6 +89,8 @@ const Register = () => {
       roles: roles
     });
   };
+
+  // Copyright component for displaying copyright information.
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -208,33 +220,22 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-      <TextField
-        fullWidth
-        id="roles"
-        select
-        label="Role"
-        name="roles"
-        value={selectedRole}
-        onChange={handleRoleChange}
-
-      >
-        {roles.map((option) => (
-          
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-    </Grid>
-              {/* <Grid item xs={12}>
                 <TextField
                   fullWidth
                   id="roles"
+                  select
                   label="Role"
                   name="roles"
-                  autoComplete="roles"
-                />
-              </Grid> */}
+                  value={selectedRole}
+                  onChange={handleRoleChange}
+                >
+                  {roles.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
             </Grid>
             <Button
               type="submit"

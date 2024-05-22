@@ -1,120 +1,122 @@
-[{
-  "_id": {
-    "$oid": "664e4c95e7cfcfdd6961e162"
+[
+  {
+    "_id": {
+      "$oid": "664e4c95e7cfcfdd6961e162"
+    },
+    "firstName": "John",
+    "lastName": "Doe",
+    "username": "johndoe123",
+    "password": "$2b$10$RqlYFlq.ta7grg58BLV2TeMikjBiNVbvNaeI8arDNCCQtLQ6itWM2",
+    "roles": "user",
+    "email": "johndoe@email.com",
+    "address": "Tel Aviv, Israel",
+    "phone": "123456789",
+    "createdAt": {
+      "$date": "2024-05-22T19:50:45.316Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T19:50:45.316Z"
+    },
+    "__v": 0
   },
-  "firstName": "John",
-  "lastName": "Doe",
-  "username": "johndoe123",
-  "password": "$2b$10$RqlYFlq.ta7grg58BLV2TeMikjBiNVbvNaeI8arDNCCQtLQ6itWM2",
-  "roles": "user",
-  "email": "johndoe@email.com",
-  "address": "Tel Aviv, Israel",
-  "phone": "123456789",
-  "createdAt": {
-    "$date": "2024-05-22T19:50:45.316Z"
+  {
+    "_id": {
+      "$oid": "664e4cd1e7cfcfdd6961e165"
+    },
+    "firstName": "Sarah",
+    "lastName": "Smith",
+    "username": "sarahsmith22",
+    "password": "$2b$10$lmKMpN/FfAl4l.8vQaqubOjR2MOlwKTDjSC0SkP.ljny/FVCEhUiC",
+    "roles": "admin",
+    "email": "sarah.smith@email.com",
+    "address": "Jerusalem, Israel",
+    "phone": "987654321",
+    "createdAt": {
+      "$date": "2024-05-22T19:51:45.557Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T19:51:45.557Z"
+    },
+    "__v": 0
   },
-  "updatedAt": {
-    "$date": "2024-05-22T19:50:45.316Z"
+  {
+    "_id": {
+      "$oid": "664e4d14e7cfcfdd6961e169"
+    },
+    "firstName": "David",
+    "lastName": "Cohen",
+    "username": "david1234",
+    "password": "$2b$10$gIAPPCnrNb0S/YSlDqQJY.P7tYGlan7CJjt/99Zpqjj36vaxHiata",
+    "roles": "user",
+    "email": "david.cohen@email.com",
+    "address": "Haifa, Israel",
+    "phone": "111222333",
+    "createdAt": {
+      "$date": "2024-05-22T19:52:52.783Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T19:52:52.783Z"
+    },
+    "__v": 0
   },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "664e4cd1e7cfcfdd6961e165"
+  {
+    "_id": {
+      "$oid": "664e4d4fe7cfcfdd6961e16c"
+    },
+    "firstName": "Rachel",
+    "lastName": "Levy",
+    "username": "rach_lev",
+    "password": "$2b$10$W8UHWr5TIMCBvW.bgjJjqehoi.5pS6oAXC.LjADHoCoHwMCg8Qafq",
+    "roles": "admin",
+    "email": "rachel.levy@email.com",
+    "address": "Beersheba, Israel",
+    "phone": "333444555",
+    "createdAt": {
+      "$date": "2024-05-22T19:53:51.455Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T19:53:51.455Z"
+    },
+    "__v": 0
   },
-  "firstName": "Sarah",
-  "lastName": "Smith",
-  "username": "sarahsmith22",
-  "password": "$2b$10$lmKMpN/FfAl4l.8vQaqubOjR2MOlwKTDjSC0SkP.ljny/FVCEhUiC",
-  "roles": "admin",
-  "email": "sarah.smith@email.com",
-  "address": "Jerusalem, Israel",
-  "phone": "987654321",
-  "createdAt": {
-    "$date": "2024-05-22T19:51:45.557Z"
+  {
+    "_id": {
+      "$oid": "664e4da0e7cfcfdd6961e170"
+    },
+    "firstName": "Yael",
+    "lastName": "Schimmel",
+    "username": "yaelishimel@gmail.com",
+    "password": "$2b$10$WCHyTFJSvByXmrfdHpu0reQiE4zRrMJSdIi/9dro0nic84Sx2Axfy",
+    "roles": "admin",
+    "email": "yaelishimel@gmail.com",
+    "address": "aggassi, 12",
+    "phone": "0583282718",
+    "createdAt": {
+      "$date": "2024-05-22T19:55:12.167Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T19:55:12.167Z"
+    },
+    "__v": 0
   },
-  "updatedAt": {
-    "$date": "2024-05-22T19:51:45.557Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "664e4d14e7cfcfdd6961e169"
-  },
-  "firstName": "David",
-  "lastName": "Cohen",
-  "username": "david1234",
-  "password": "$2b$10$gIAPPCnrNb0S/YSlDqQJY.P7tYGlan7CJjt/99Zpqjj36vaxHiata",
-  "roles": "user",
-  "email": "david.cohen@email.com",
-  "address": "Haifa, Israel",
-  "phone": "111222333",
-  "createdAt": {
-    "$date": "2024-05-22T19:52:52.783Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-22T19:52:52.783Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "664e4d4fe7cfcfdd6961e16c"
-  },
-  "firstName": "Rachel",
-  "lastName": "Levy",
-  "username": "rach_lev",
-  "password": "$2b$10$W8UHWr5TIMCBvW.bgjJjqehoi.5pS6oAXC.LjADHoCoHwMCg8Qafq",
-  "roles": "admin",
-  "email": "rachel.levy@email.com",
-  "address": "Beersheba, Israel",
-  "phone": "333444555",
-  "createdAt": {
-    "$date": "2024-05-22T19:53:51.455Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-22T19:53:51.455Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "664e4da0e7cfcfdd6961e170"
-  },
-  "firstName": "Yael",
-  "lastName": "Schimmel",
-  "username": "yaelishimel@gmail.com",
-  "password": "$2b$10$WCHyTFJSvByXmrfdHpu0reQiE4zRrMJSdIi/9dro0nic84Sx2Axfy",
-  "roles": "admin",
-  "email": "yaelishimel@gmail.com",
-  "address": "aggassi, 12",
-  "phone": "0583282718",
-  "createdAt": {
-    "$date": "2024-05-22T19:55:12.167Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-22T19:55:12.167Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "664e4e40e7cfcfdd6961e175"
-  },
-  "firstName": "Sari",
-  "lastName": "Wallach",
-  "username": "sariwa413@gmail.com",
-  "password": "$2b$10$a79s1Xn3WeKhZ8zFaoPlG.fF9D4XujKacp/Vb7XxzH7XMQ6c.Nxxi",
-  "roles": "admin",
-  "email": "sariwa413@gmail.com",
-  "address": "Haim Vital, Jerusalem",
-  "phone": "504150414",
-  "createdAt": {
-    "$date": "2024-05-22T19:57:52.502Z"
-  },
-  "updatedAt": {
-    "$date": "2024-05-22T19:57:52.502Z"
-  },
-  "__v": 0
-}]
+  {
+    "_id": {
+      "$oid": "664e4e40e7cfcfdd6961e175"
+    },
+    "firstName": "Sari",
+    "lastName": "Wallach",
+    "username": "sariwa413@gmail.com",
+    "password": "$2b$10$a79s1Xn3WeKhZ8zFaoPlG.fF9D4XujKacp/Vb7XxzH7XMQ6c.Nxxi",
+    "roles": "admin",
+    "email": "sariwa413@gmail.com",
+    "address": "Haim Vital, Jerusalem",
+    "phone": "504150414",
+    "createdAt": {
+      "$date": "2024-05-22T19:57:52.502Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-22T19:57:52.502Z"
+    },
+    "__v": 0
+  }
+]

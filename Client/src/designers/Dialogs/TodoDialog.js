@@ -1,4 +1,3 @@
-////הורדתי תעמוד הזה קומפלט מMUIד
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,32 +10,44 @@ import { useUpdateTodoMutation } from '../../todos/todosApiSlice';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Paper, IconButton } from '@mui/material';
 
+/**
+ * TodoDialog component for editing todo details.
+ * Renders a dialog form for editing todo title and tags.
+**/
 function TodoDialog({ todo, open, setOpen }) {
   const [Edit] = useUpdateTodoMutation()
 
   const [title, setTitle] = React.useState(todo.title)
   const [tags, setTags] = React.useState(todo.tags)
 
+  // Handles changes to a tag's value.
   const onChangeTag = (val, index) => {
     const updatedTagsArray = [...tags];
     updatedTagsArray[index] = val;
     setTags(updatedTagsArray);
   };
 
+  // Adds a new tag to the todo.
   const onAddTag = () => {
     setTags([...tags, ""]);
   };
 
+  // Deletes a tag from the todo.
   const onDeleteTag = (index) => {
     const updatedTagsArray = [...tags];
     updatedTagsArray.splice(index, 1);
     setTags(updatedTagsArray);
   }
 
+  // Handles the closure of the dialog.
   const handleClose = () => {
     setOpen(false);
   };
 
+  /**
+   * Handles the save action.
+   * Calls the mutation to update the todo details and closes the dialog.
+   */
   const handleSave = () => {
     Edit({ _id: todo._id, title: title, tags: tags })
     handleClose();
@@ -76,7 +87,7 @@ function TodoDialog({ todo, open, setOpen }) {
                     value={tag}
                     onChange={(e) => onChangeTag(e.target.value, index)}
                     fullWidth
-                    style={{ marginRight: '8px' }} // Adjust spacing between TextField and DeleteIcon
+                    style={{ marginRight: '8px' }}
                   />
                   <IconButton onClick={() => onDeleteTag(index)}>
                     <DeleteIcon color="error" />
@@ -105,4 +116,3 @@ function TodoDialog({ todo, open, setOpen }) {
 
 }
 export default TodoDialog;
-
