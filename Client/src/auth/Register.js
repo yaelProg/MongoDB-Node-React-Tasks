@@ -216,8 +216,10 @@ const Register = () => {
         name="roles"
         value={selectedRole}
         onChange={handleRoleChange}
+
       >
         {roles.map((option) => (
+          
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
