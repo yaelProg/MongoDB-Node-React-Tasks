@@ -34,7 +34,12 @@ function AddPhotoDialog({ open, setOpen }) {
   * Calls the mutation to add the new photo and closes the dialog.
   */
   const handleSave = () => {
-    Add({ title: title, imageUrl: file });
+    const formdata = new FormData()
+    formdata.append("title", title)
+    formdata.append("imageUrl", file)
+    Add(formdata);
+    console.log(title)
+    console.log(file)
     handleClose();
   }
 
@@ -53,27 +58,6 @@ function AddPhotoDialog({ open, setOpen }) {
             fullWidth
             required
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="userName"
-            label="Add Picture URL"
-            type="text"
-            onChange={(e) => setImageUrl(e.target.value)}
-            fullWidth
-          />
-          {/* <div className="card flex justify-content-center">
-    <MuiFileInput value={imageUrl} onChange={handleChange} />
-          </div>
-          <div className="card flex justify-content-center">
-            <FileUpload fullWidth name="demo[]" auto accept="image/*" maxFileSize={1000000000000000} emptyTemplate={<p className="m-0">upload picture</p>}
-              uploadLabel='&nbsp;העלאה' cancelLabel='&nbsp;ביטול' chooseLabel='choose &nbsp;'
-                                    customUpload
-              // uploadHandler={(e) => setImageUrl(e.files[0])}
-            // />
-
-          // </div> 
-          // */}
           <MuiFileInput value={file} onChange={handleChange} display="inline-block"
             fullWidth
             placeholder='Upload Photo'

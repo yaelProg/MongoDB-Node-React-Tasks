@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useUpdatePhotoMutation } from '../../photos/photosApiSlice';
+import { MuiFileInput } from 'mui-file-input';
+import { UploadFile } from '@mui/icons-material';
 
 /**
  * PhotoDialog component for editing photo details.
@@ -17,10 +19,16 @@ function PhotoDialog({ photo, open, setOpen }) {
 
   const [title, setTitle] = React.useState(photo.title)
   const [imageUrl, setImageUrl] = React.useState(photo.imageUrl)
+  const [_id, set_id] = React.useState(photo._id)
+  const [file, setFile] = React.useState(photo.imageUrl);
 
   // Handles the closure of the dialog.
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChange = (newFile) => {
+    setFile(newFile);
   };
 
   /**
@@ -28,7 +36,14 @@ function PhotoDialog({ photo, open, setOpen }) {
    * Calls the mutation to update the photo details and closes the dialog.
    */
   const handleSave = () => {
-    Edit({ _id: photo._id, title: title, imageUrl: imageUrl })
+    // Edit({ _id: photo._id, title: title, imageUrl: imageUrl })
+    const formdata = new FormData()
+    formdata.append( "_id", _id)
+    formdata.append("title", title)
+    formdata.append("imageUrl", file)
+    Edit(formdata);
+    console.log(title)
+    console.log(file)
     handleClose();
   }
 
@@ -51,16 +66,22 @@ function PhotoDialog({ photo, open, setOpen }) {
             fullWidth
             required
           />
-          <TextField
+          {/* <TextField
             autoFocus
             margin="dense"
             id="userName"
-            label="Pic"
+            label="Photo"
             type="text"
             defaultValue={photo.imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
             fullWidth
-          />
+          /> */}
+          <MuiFileInput value={file} onChange={handleChange} display="inline-block"
+            fullWidth
+            placeholder='Change Photo'
+          >
+            <UploadFile />
+          </MuiFileInput>
         </DialogContent>
         <DialogActions>
           <Button

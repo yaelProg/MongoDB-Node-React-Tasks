@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useUpdateUserMutation } from '../../users/userApiSlice';
 import { InputAdornment } from '@material-ui/core';
-import IsraelFlag from './IsraelFlag.png'; // Assuming IsraelFlag component exists for displaying the flag
+import IsraelFlag from './IsraelFlag.png';
 
 /**
  * UserDialog component for editing user details.

@@ -80,7 +80,7 @@ function NavBar({ isAdmin = false }) {
 
   return (
     <AppBar position="static" >
-      <Container maxWidth="xl" sx={{ backgroundColor: 'white' }}>
+      <Container maxWidth="100%" sx={{ backgroundColor: 'white' }}>
         <Toolbar disableGutters>
           {/* Navigation menu for small screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -145,8 +145,8 @@ function NavBar({ isAdmin = false }) {
           maxHeight: '100%',
           alignItems: 'center',
           position: 'absolute',
-          top: '3%',
-          right: '2%',
+          top: '1.5%',
+          right: '1.5%',
           padding: '1% 2%',
           borderRadius: '5%',
           cursor: 'pointer',

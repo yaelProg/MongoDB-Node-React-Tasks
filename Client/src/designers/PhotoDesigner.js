@@ -40,17 +40,17 @@ const PhotoDesigner = ({ photo }) => {
       <Card
         sx={{
           display: "flex",
-          flexDirection: "column", // Set flex direction to column
+          flexDirection: "column",
           justifyContent: "space-between",
           p: 1,
-          mx: 2, // Add margin on the x-axis (horizontal)
+          mx: 2,
         }}
       >
         <CardMedia
           component="img"
           height="300"
           width="400"
-          image={photo.imageUrl}
+          image={`http://localhost:2004/uploads/${photo.imageUrl}`}
           alt={photo.title}
         />
         <Box sx={{ p: 1 }}>
