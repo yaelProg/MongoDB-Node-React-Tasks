@@ -10,7 +10,7 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, __dirname + "/public/uploads")
+        cb(null,"./public/uploads")
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + "-" + Math.random(Math.random() * 1E9)
@@ -22,8 +22,8 @@ const upload = multer({ storage: storage })
 
 router.use(verifyJWT)
 router.get("/", controller.getAllPhotos)
-router.post("/", upload.single("picture"), controller.createNewPhoto)
+router.post("/", upload.single("imageUrl"), controller.createNewPhoto)
 router.delete("/:id", controller.deletePhoto)
-router.put("/", upload.single("picture"), controller.updatePhoto)
+router.put("/", upload.single("imageUrl"), controller.updatePhoto)
 
 module.exports = router

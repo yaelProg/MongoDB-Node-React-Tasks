@@ -17,6 +17,7 @@ const getAllPhotos = async (req, res) => {
 const createNewPhoto = async (req, res) => {
     try {
         const { title } = req.body
+        console.log("imageUrl");
         const imageUrl = (req.file?.filename ? req.file.filename : "")
         console.log(imageUrl);
         if (!title)
