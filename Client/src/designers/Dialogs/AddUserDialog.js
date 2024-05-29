@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useCreateUserMutation } from '../../users/userApiSlice';
+import { useRegisterMutation } from '../../auth/authApiSlice';
 import { InputAdornment } from '@mui/material';
 import IsraelFlag from './IsraelFlag.png';
 
@@ -14,16 +14,9 @@ import IsraelFlag from './IsraelFlag.png';
  * Renders a dialog form for adding a new user with various fields.
 **/
 function AddUserDialog({ open, setOpen }) {
-  const [Add] = useCreateUserMutation()
+  const [Add] = useRegisterMutation()
 
-  const [firstName, setFirstName] = React.useState()
-  const [lastName, setLastName] = React.useState()
-  const [userName, setUserName] = React.useState()
-  const [password, setPassword] = React.useState()
-  const [email, setEmail] = React.useState()
-  const [address, setAddress] = React.useState()
-  const [phone, setPhone] = React.useState()
-  const [pwd, setPwd] = React.useState()
+  const [newUser, setNewUser] = React.useState()
 
   // Handles the closure of the dialog.
   const handleClose = () => {
@@ -34,13 +27,19 @@ function AddUserDialog({ open, setOpen }) {
    * Handles the save action.
    * Calls the mutation to add the new user and closes the dialog.
    */
+
   const handleSave = async () => {
-    await Add({ firstName: firstName, lastName: lastName, userName: userName, email: email, address: address, phone: phone, password: pwd })
-    handleClose()
+    debugger
+    var res = await Add(newUser);
+    if (res.error) {
+      alert(res.error.data.message);
+    } else {
+      handleClose()
+    }
   }
 
   // Checks if the input fields are valid for enabling the save button.
-  const isValid = userName && firstName && lastName
+  const isValid = newUser?.username && newUser?.firstName && newUser?.lastName
 
   return (
     <div>
@@ -53,8 +52,8 @@ function AddUserDialog({ open, setOpen }) {
             id="name"
             label="First Name"
             type="text"
-            placeholder={'enter the name'}
-            onChange={(e) => setFirstName(e.target.value)}
+            placeholder={'Enter the name'}
+            onChange={(e) => setNewUser({ ...newUser, ["firstName"]: e.target.value })}
             fullWidth
             required
           />
@@ -64,30 +63,30 @@ function AddUserDialog({ open, setOpen }) {
             id="name"
             label="Last Name"
             type="text"
-            placeholder={'enter the name'}
-            onChange={(e) => setLastName(e.target.value)}
+            placeholder={'Enter the name'}
+            onChange={(e) => setNewUser({ ...newUser, ["lastName"]: e.target.value })}
             fullWidth
             required
           />
           <TextField
             autoFocus
             margin="dense"
-            id="userName"
+            id="username"
             label="User Name"
             type="text"
-            placeholder={'enter userName'}
-            onChange={(e) => setUserName(e.target.value)}
+            placeholder={'Enter user name'}
+            onChange={(e) => setNewUser({ ...newUser, ["username"]: e.target.value })}
             fullWidth
             required
           />
           <TextField
             autoFocus
             margin="dense"
-            id="userName"
+            id="username"
             label="Password"
             type="password"
-            placeholder={'enter password'}
-            onChange={(e) => setPwd(e.target.value)}
+            placeholder={'Enter password'}
+            onChange={(e) => setNewUser({ ...newUser, ["password"]: e.target.value })}
             fullWidth
             required
           />
@@ -97,8 +96,8 @@ function AddUserDialog({ open, setOpen }) {
             id="email"
             label="Email"
             type="email"
-            placeholder={'enter email'}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder={'Enter email'}
+            onChange={(e) => setNewUser({ ...newUser, ["email"]: e.target.value })}
             fullWidth
           />
           <TextField
@@ -107,8 +106,8 @@ function AddUserDialog({ open, setOpen }) {
             id="address"
             label="Address"
             type="text"
-            placeholder={'enter address'}
-            onChange={(e) => setAddress(e.target.value)}
+            placeholder={'Enter address'}
+            onChange={(e) => setNewUser({ ...newUser, ["address"]: e.target.value })}
             fullWidth
           />
           <TextField
@@ -116,7 +115,7 @@ function AddUserDialog({ open, setOpen }) {
             margin="dense"
             id="phone"
             label="Phone"
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => setNewUser({ ...newUser, ["phone"]: e.target.value })}
             fullWidth
             type="tel"
             inputProps={{ inputMode: 'tel', pattern: '[0-9]{3}-[0-9]{7}' }}

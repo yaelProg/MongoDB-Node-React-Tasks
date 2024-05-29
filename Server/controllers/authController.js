@@ -55,7 +55,7 @@ const register = async (req, res) => {
 
         const duplicate = await User.findOne({ username: username }).lean()
         if (duplicate) {
-            return res.status(409).json({ message: 'Username exists' })
+            return res.status(409).json({ message: 'Username already exists in the system' })
         }
         if (roles != undefined && roles != "user" && roles != "admin") {
             return res.status(400).json({ message: 'Invalid role' })

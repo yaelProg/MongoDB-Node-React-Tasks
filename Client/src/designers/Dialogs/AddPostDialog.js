@@ -18,7 +18,7 @@ function AddPostDialog({ open, setOpen }) {
   const [body, setBody] = React.useState()
   const [likes, setLikes] = React.useState()
 
-// Handles the closure of the dialog.
+  // Handles the closure of the dialog.
   const handleClose = () => {
     setOpen(false);
   };
@@ -43,7 +43,7 @@ function AddPostDialog({ open, setOpen }) {
             id="title"
             label="Enter the post title"
             type="text"
-            placeholder={'enter the post title'}
+            placeholder={'Enter the post title'}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
             required
@@ -56,7 +56,7 @@ function AddPostDialog({ open, setOpen }) {
             id="body"
             label="Enter post body"
             type="text"
-            placeholder={'enter post body'}
+            placeholder={'Enter post body'}
             onChange={(e) => setBody(e.target.value)}
             fullWidth
           />

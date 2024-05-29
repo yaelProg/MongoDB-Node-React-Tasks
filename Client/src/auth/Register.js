@@ -48,7 +48,10 @@ const Register = () => {
       dispatch(setToken(data)) // Dispatch token received from registration
       navigate("/HomePage", { replace: true }) // Redirect user to HomePage
     }
-  }, [isSuccess])
+    if (isError) {
+      alert(error?.data?.message || "An error occurred during registration") // Display an alert in case of an error
+    }
+  }, [isSuccess, isError])
 
   // Handles selection change of user role.
   const handleRoleChange = (event) => {

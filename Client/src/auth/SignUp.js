@@ -35,7 +35,10 @@ const SignUp = () => {
       dispatch(setToken(data))
       navigate("/HomePage", { replace: true })
     }
-  }, [isSuccess])
+    if (isError) {
+      alert(error?.data?.message || "An error occurred during sign up") // Display an alert in case of an error
+    }
+  }, [isSuccess, isError])
 
   /**
    * Handles form submission for user registration.

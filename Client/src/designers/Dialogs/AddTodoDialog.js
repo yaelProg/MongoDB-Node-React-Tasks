@@ -67,7 +67,7 @@ function AddTodoDialog({ open, setOpen }) {
             id="title"
             label="Title"
             type="text"
-            placeholder='add a title'
+            placeholder='Add a title'
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
             required
