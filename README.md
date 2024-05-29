@@ -8,6 +8,7 @@
 ![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/63e45f5a-72bc-49fc-a07e-37aee9d9da04)
 ![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/92f34156-8aba-4aa9-8bdb-9786f1da76a1)
 ![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/bfe0f81c-ae34-488e-b75e-f976d5f9a783)
+![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/024e7e20-f9d8-4b91-aeef-d74d7feee4f1)
 ![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/8a0b9656-73e3-413a-9cbe-a8503eef8b61)
 ![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/e04fb8a5-972f-4d27-9f15-1d2352ff6f64)
 ![image](https://github.com/yaelProg/MongoDB-Node-React-Tasks/assets/156606079/b083d4e6-d6a4-4721-8f73-86ad3e8e8f3d)
