@@ -1,4 +1,3 @@
-
 const Photo = require("../models/Photos")
 //לפי קריטריונים
 const getAllPhotos = async (req, res) => {
@@ -37,7 +36,9 @@ const createNewPhoto = async (req, res) => {
 
 const updatePhoto = async (req, res) => {
     try {
-        const { _id, title, imageUrl } = req.body
+        const { _id, title } = req.body
+        const imageUrl = (req.file?.filename ? req.file.filename : "")
+        console.log(imageUrl);
         if (!_id || !title) {
             return res.status(400).json({ message: 'fields are required' })
         }
@@ -46,9 +47,8 @@ const updatePhoto = async (req, res) => {
             return res.status(400).json({ message: 'Photo not found' })
         }
         photo.title = title
-        photo.imageUrl = imageUrl
-
-
+        if (imageUrl != "")
+            photo.imageUrl = imageUrl
         const updatedPhoto = await photo.save()
         res.json(`'${updatedPhoto.title}' updated`)
     }
@@ -79,8 +79,3 @@ module.exports = {
     updatePhoto,
     deletePhoto,
 }
-
-
-
-
-
