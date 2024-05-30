@@ -27,7 +27,7 @@ To run the project locally, follow these steps:
 
 3. Update the .env file in the server directory with your MongoDB connection string:
    ```bash
-    DATABASE_URI=<your_connection_string>
+    DATABASE_URI = <your_connection_string>
 
 4. Initialize the server by running:
 
