@@ -18,7 +18,7 @@ function AddPhotoDialog({ open, setOpen }) {
 
   const [title, setTitle] = React.useState()
   const [imageUrl, setImageUrl] = React.useState()
-  const [file, setFile] = React.useState(null);
+  const [file, setFile] = React.useState("");
 
   // Handles the closure of the dialog.
   const handleClose = () => {
