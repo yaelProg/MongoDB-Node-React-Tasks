@@ -35,7 +35,7 @@ const TodosPage = () => {
       {isError && <p>Error: {error.message}</p>}
       {/* Display todos if available */}
       {todos && todos.length > 0 ? (
-        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px' }}>
+        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px', maxWidth:"98%"}}>
           <br />
           {/* Map through todos and render TodoDesigner component for each */}
           {todos.map((todo) => (

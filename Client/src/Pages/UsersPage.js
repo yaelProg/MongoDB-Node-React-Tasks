@@ -41,7 +41,7 @@ const UsersPage = () => {
       {isError && <p>Error: {error.message}</p>}
       {/* Display users if available */}
       {users && users.length > 0 ? (
-        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px' }}>
+        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px', maxWidth:"98%" }}>
           <br />
           {/* Map through users and render UserDesigner component for each */}
           {users.map((user) => (

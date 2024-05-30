@@ -22,7 +22,7 @@ const UsersPage = () => {
   CheckToken();
 
   return (
-    <div className="sPage">
+    <div className="sPage" >
       {/* Render the navigation bar */}
       <NavBar_Caller />
       <br></br>
@@ -34,11 +34,11 @@ const UsersPage = () => {
       {isError && <p>Error: {error.message}</p>}
       {/* Display photos if available */}
       {photos && photos.length > 0 ? (
-        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px' }}>
+        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px', maxWidth: "98%" }}>
           <br></br>
           {/* Map through photos and render PhotoDesigner component for each */}
           {photos.map((photo) => (
-            <Grid item key={photo._id} xs={12} sm={6} md={4} lg={3}>
+            <Grid item key={photo._id} xs={12} sm={6} md={4} lg={3} >
               <PhotoDesigner photo={photo} />
             </Grid>
           ))}

@@ -39,7 +39,7 @@ const PostsPage = () => {
       {isError && <p>Error: {error.message}</p>}
       {/* Display posts if available */}
       {posts && posts.length > 0 ? (
-        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px' }}>
+        <Grid container spacing={2} style={{ marginLeft: '5px', marginRight: '5px', maxWidth:"98%" }}>
           <br></br>
           {/* Map through posts and render PostDesigner component for each */}
           {posts.map((post) => (
